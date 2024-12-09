@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alumni Directory</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+    #search-bar {
+      margin-bottom: 20px;
+      padding: 10px;
+      width: 100%;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Alumni Directory</h1>
+  <input type="text" id="search-bar" placeholder="Search by name, ID, company, course, job, or phone number...">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>ID No</th>
+        <th>Company</th>
+        <th>Course</th>
+        <th>Current Job</th>
+        <th>Phone No</th>
+      </tr>
+    </thead>
+    <tbody id="alumni-table">
+    </tbody>
+  </table>
+
+  <script>
+    const alumniList = [
+      { name: "John Doe", idNo: "A001", company: "Tech Innovations Ltd.", course: "Bachelor in Computer Science", currentJob: "Software Developer", phoneNo: "+60123456789" },
+      { name: "Jane Smith", idNo: "A002", company: "Creative Solutions", course: "Bachelor in Graphic Design", currentJob: "UI/UX Designer", phoneNo: "+60198765432" },
+      { name: "Ali Ahmad", idNo: "A003", company: "Finance Corp", course: "Bachelor in Economy", currentJob: "Financial Analyst", phoneNo: "+60111122334" },
+      { name: "Maria Tan", idNo: "A004", company: "Healthline Inc.", course: "Bachelor in Medicine", currentJob: "Doctor", phoneNo: "+60154433221" },
+      { name: "Rajesh Kumar", idNo: "A005", company: "BuildPro Construction", course: "Bachelor in Civil Engineering", currentJob: "Civil Engineer", phoneNo: "+60112345678" },
+      { name: "Emily Wong", idNo: "A006", company: "EdTech World", course: "Bachelor in Education", currentJob: "Curriculum Developer", phoneNo: "+60156789123" },
+      { name: "Hassan Ali", idNo: "A007", company: "Green Energy Solutions", course: "Bachelor in Environmental Science", currentJob: "Environmental Consultant", phoneNo: "+60123498765" },
+      { name: "Sophia Lim", idNo: "A008", company: "Legal Solutions", course: "Bachelor in Law", currentJob: "Lawyer", phoneNo: "+60187654321" },
+      { name: "Arif Khan", idNo: "A009", company: "Global Logistics", course: "Bachelor in Business Administration", currentJob: "Supply Chain Manager", phoneNo: "+60155667788" },
+      { name: "Lily Chen", idNo: "A010", company: "Digital Arts Studio", course: "Bachelor in Fine Arts", currentJob: "Digital Artist", phoneNo: "+60166554433" }
+    ];
+
+    const tableBody = document.getElementById("alumni-table");
+    const searchBar = document.getElementById("search-bar");
+
+    // Function to display alumni data
+    function displayAlumni(list) {
+      tableBody.innerHTML = ""; // Clear the table
+      list.forEach(alumni => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${alumni.name}</td>
+          <td>${alumni.idNo}</td>
+          <td>${alumni.company}</td>
+          <td>${alumni.course}</td>
+          <td>${alumni.currentJob}</td>
+          <td>${alumni.phoneNo}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Function to filter alumni based on search query
+    function filterAlumni(query) {
+      query = query.toLowerCase(); // Convert query to lowercase for case-insensitive matching
+      return alumniList.filter(alumni =>
+        alumni.name.toLowerCase().includes(query) ||
+        alumni.idNo.toLowerCase().includes(query) ||
+        alumni.company.toLowerCase().includes(query) ||
+        alumni.course.toLowerCase().includes(query) ||
+        alumni.currentJob.toLowerCase().includes(query) ||
+        alumni.phoneNo.toLowerCase().includes(query)
+      );
+    }
+
+    // Event listener for search bar
+    searchBar.addEventListener("input", (event) => {
+      const query = event.target.value;
+      const filteredAlumni = filterAlumni(query);
+      displayAlumni(filteredAlumni);
+    });
+
+    // Initial display of all alumni
+    displayAlumni(alumniList);
+  </script>
+</body>
+</html>
+<!--ni contoh sekali search-->
