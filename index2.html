@@ -3,177 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dinner Event</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-    }
-    body {
-      background-color: #f4f4f4;
-      padding: 20px;
-      text-align: center;
-    }
-    header img {
-      width: 100%;
-      height: auto;
-    }
-    h1 {
-      margin-top: 20px;
-      color: #333;
-    }
-    .search-container {
-      margin: 20px auto;
-      max-width: 600px;
-    }
-    #search-bar {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      margin-bottom: 20px;
-      border: 2px solid #ccc;
-      border-radius: 5px;
-    }
-    table {
-      width: 100%;
-      margin-top: 20px;
-      border-collapse: collapse;
-      display: none; /* Hidden by default */
-    }
-    th, td {
-      padding: 10px;
-      border: 1px solid #ccc;
-      text-align: left;
-    }
-    th {
-      background-color: #f8f8f8;
-    }
-    .image-section {
-      margin: 20px auto;
-      max-width: 800px;
-    }
-    .image-section img {
-      width: 100%;
-      height: auto;
-      margin-bottom: 20px;
-    }
-    .btn-container {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin: 20px;
-    }
-    .btn {
-      padding: 10px 20px;
-      background-color: #333;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    .btn:hover {
-      background-color: #555;
-    }
-    @media screen and (max-width: 768px) {
-      .btn-container {
-        flex-direction: column;
-      }
-    }
-  </style>
+  <title>MMR 55</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-  <img src="C:\Users\adibh\OneDrive\Documents\VScode\MMR\BACKDROP WEBSITE.jpg" alt="Dinner Event Banner">
+  <img src="C:\Users\adibh\OneDrive\Documents\VScode\MMR\images\BACKDROP WEBSITE.jpg" alt="Dinner Event Banner">
 </header>
 
-<h1>Welcome to the Dinner Event</h1>
+<h1>SELAMAT DATANG KE MAJLIS MAKAN MALAM REJIMENTAL HUT KRD KE-55</h1>
+<p class="description">Join us for an unforgettable evening filled with joy, laughter, and celebration. Find your seat and enjoy the event!</p>
 
 <div class="search-container">
-  <input type="text" id="search-bar" placeholder="Search by name, ID, or phone number...">
-  <table id="results-table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>ID</th>
-        <th>Phone Number</th>
-        <th>Seat</th>
-      </tr>
-    </thead>
-    <tbody id="results-body"></tbody>
-  </table>
+  <input type="text" id="search-bar" placeholder="Search by Military ID...">
+  <div class="data-box">
+    <table id="results-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>ID</th>
+          <th>Phone Number</th>
+          <th>Seat</th>
+        </tr>
+      </thead>
+      <tbody id="results-body"></tbody>
+    </table>
+  </div>
 </div>
 
 <div class="image-section">
-  <h2>Event Tentative</h2>
-  <img src="C:\Users\adibh\OneDrive\Documents\VScode\MMR\tentative.jpg" alt="Event Tentative">
+  <h2>EVENT TENTATIVE</h2>
+  <img src="C:\Users\adibh\OneDrive\Documents\VScode\MMR\images\tentative.jpg" alt="Event Tentative" class="glowing-border">
 </div>
 
 <div class="image-section">
-  <h2>Seating Plan</h2>
-  <img src="C:\Users\adibh\OneDrive\Documents\VScode\MMR\seating plan overall.jpg" alt="Overall Seating Plan">
-  <img src="C:\Users\adibh\OneDrive\Documents\VScode\MMR\seating plan high table.jpg" alt="High Table">
-  <img src="C:\Users\adibh\OneDrive\Documents\VScode\MMR\seating plan details 1.jpg" alt="Low Table">
+  <h2>SEATING PLAN</h2>
+  <img src="C:\Users\adibh\OneDrive\Documents\VScode\MMR\images\seating plan overall.jpg" alt="Overall Seating Plan" class="glowing-border">
+  <img src="C:\Users\adibh\OneDrive\Documents\VScode\MMR\images\seating plan high table.jpg" alt="High Table" class="glowing-border">
+  <img src="C:\Users\adibh\OneDrive\Documents\VScode\MMR\images\seating plan details 1.jpg" alt="Low Table" class="glowing-border">
 </div>
 
-<script>
-const guests = [
-  { name: "John Doe", id: "A001", phone: "+60123456789", seat: "Table 1" },
-  { name: "Jane Smith", id: "A002", phone: "+60198765432", seat: "Table 2" }
-];
+<script src="script.js"></script>
 
-const searchBar = document.getElementById("search-bar");
-const resultsTable = document.getElementById("results-table");
-const resultsBody = document.getElementById("results-body");
-
-searchBar.addEventListener("input", () => {
-  const query = searchBar.value.toLowerCase().trim();
-
-  if (query === "") {
-    clearResults();  // Clear results if input is empty
-    return;
-  }
-
-  const filteredGuests = guests.filter(guest => 
-    guest.name.toLowerCase() === query ||
-    guest.id.toLowerCase() === query ||
-    guest.phone.toLocaleLowerCase() === query 
-  );
-
-  displayResults(filteredGuests);
-});
-
-function displayResults(guests) {
-  resultsBody.innerHTML = ""; //clear previous results
-  if (guests.length > 0) {
-    resultsTable.style.display = "table";
-    guests.forEach(guest => {
-      const row = `<tr>
-        <td>${guest.name}</td>
-        <td>${guest.id}</td>
-        <td>${guest.phone}</td>
-        <td>${guest.seat}</td>
-      </tr>`;
-      resultsBody.innerHTML += row;
-    });
-  } else {
-    clearResults(); //clear table if no matching results
-  }
-}
-
-// Function to Clear Results
-function clearResults() {
-  resultsTable.style.display = "none";  // Hide the table
-  resultsBody.innerHTML = "";  // Clear table content
-}
-
-function showImage(image) {
-  const seatingImage = document.querySelector(".image-section img:nth-child(2)");
-  seatingImage.src = image;
-}
-</script>
 </body>
 </html>
