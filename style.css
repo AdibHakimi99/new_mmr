@@ -92,10 +92,10 @@ th, td {
 
 th {
   background: linear-gradient(135deg, #444, #555);
-  color: #FFD700; /* Gold font */
+  color: #FFD700; /* gold font */
   font-family: 'Playfair Display', serif;
   text-transform: uppercase;
-  text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+  text-shadow: 0 0 8px rgba(11, 11, 11, 0.8);
 }
 
 td {
@@ -105,7 +105,9 @@ td {
 
 /* Glowing Border Effect for Images */
 .glowing-border {
-  width: 100%;
+  display: block;
+  margin: auto;
+  width: 75%;
   height: auto;
   margin-bottom: 40px;
   border-radius: 10px;
