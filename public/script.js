@@ -1,42 +1,63 @@
-const guests = [
-    { name: "John Doe", id: "A001", phone: "+60123456789", seat: "Table 1" },
-    { name: "Jane Smith", id: "A002", phone: "+60198765432", seat: "Table 2" }
-  ];
-  
-  const searchBar = document.getElementById("search-bar");
-  const resultsTable = document.getElementById("results-table");
-  const resultsBody = document.getElementById("results-body");
-  
-  searchBar.addEventListener("input", () => {
-    const query = searchBar.value.toLowerCase().trim();
-    const filteredGuests = guests.filter(guest => 
-      guest.name.toLowerCase() === query ||
-      guest.id.toLowerCase() === query ||
-      guest.phone.toLocaleLowerCase() === query
-    );
-    displayResults(filteredGuests);
+// Path to your CSV file
+const csvFilePath = "data.csv"; // Ensure the correct path to your CSV file
+
+let guests = []; // This will hold the parsed guest data
+
+const searchBar = document.getElementById("search-bar");
+const resultsTable = document.getElementById("results-table");
+const resultsBody = document.getElementById("results-body");
+
+// Function to load CSV file
+function loadCSV() {
+  Papa.parse(csvFilePath, {
+    download: true,
+    header: true,
+    skipEmptyLines: true,
+    complete: function (results) {
+      guests = results.data.map((guest) => ({
+        name: guest.NAMA,       // Map 'NAMA' to 'name'
+        id: guest["NO TENTERA"], // Map 'NO TENTERA' to 'id'
+        phone: guest.NO,        // Map 'NO' to 'phone'
+        seat: guest.MEJA,       // Map 'MEJA' to 'seat'
+      }));
+      console.log("CSV Loaded:", guests); // Debug: Log loaded data
+    },
+    error: function (error) {
+      console.error("Error loading CSV:", error.message);
+    },
   });
-  
-  function displayResults(guests) {
-    resultsBody.innerHTML = "";
-    if (guests.length > 0) {
-      resultsTable.style.display = "table";
-      guests.forEach(guest => {
-        const row = `<tr>
-          <td>${guest.name}</td>
-          <td>${guest.id}</td>
-          <td>${guest.phone}</td>
-          <td>${guest.seat}</td>
-        </tr>`;
-        resultsBody.innerHTML += row;
-      });
-    } else {
-      resultsTable.style.display = "none";
-    }
+}
+
+// Function to display results
+function displayResults(filteredGuests) {
+  resultsBody.innerHTML = ""; // Clear previous results
+  if (filteredGuests.length > 0) {
+    resultsTable.style.display = "table"; // Show the table if results are found
+    filteredGuests.forEach((guest) => {
+      const row = `<tr>
+        <td>${guest.name}</td>
+        <td>${guest.id}</td>
+        <td>${guest.phone}</td>
+        <td>${guest.seat}</td>
+      </tr>`;
+      resultsBody.innerHTML += row;
+    });
+  } else {
+    resultsTable.style.display = "none"; // Hide the table if no results are found
   }
-  
-  function showImage(image) {
-    const seatingImage = document.querySelector(".image-section img:nth-child(2)");
-    seatingImage.src = image;
-  }
-  
+}
+
+// Search event listener
+searchBar.addEventListener("input", () => {
+  const query = searchBar.value.toLowerCase().trim();
+  const filteredGuests = guests.filter(
+    (guest) =>
+      guest.name.toLowerCase().includes(query) ||
+      guest.id.toLowerCase().includes(query) ||
+      guest.phone.toLowerCase().includes(query)
+  );
+  displayResults(filteredGuests);
+});
+
+// Load CSV on page load
+document.addEventListener("DOMContentLoaded", loadCSV);
