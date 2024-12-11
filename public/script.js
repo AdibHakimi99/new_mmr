@@ -1,4 +1,4 @@
-// Path to your CSV file
+// Path to your CSV file 
 const csvFilePath = "data.csv"; // Ensure the correct path to your CSV file
 
 let guests = []; // This will hold the parsed guest data
@@ -17,7 +17,7 @@ function loadCSV() {
       guests = results.data.map((guest) => ({
         name: guest.NAMA,       // Map 'NAMA' to 'name'
         id: guest["NO TENTERA"], // Map 'NO TENTERA' to 'id'
-        phone: guest.NO,        // Map 'NO' to 'phone'
+        seat_no: guest.NO,        // Map 'NO' to 'seat_no'
         seat: guest.MEJA,       // Map 'MEJA' to 'seat'
       }));
       console.log("CSV Loaded:", guests); // Debug: Log loaded data
@@ -31,14 +31,15 @@ function loadCSV() {
 // Function to display results
 function displayResults(filteredGuests) {
   resultsBody.innerHTML = ""; // Clear previous results
+
   if (filteredGuests.length > 0) {
     resultsTable.style.display = "table"; // Show the table if results are found
     filteredGuests.forEach((guest) => {
       const row = `<tr>
         <td>${guest.name}</td>
         <td>${guest.id}</td>
-        <td>${guest.phone}</td>
         <td>${guest.seat}</td>
+        <td>${guest.seat_no}</td>
       </tr>`;
       resultsBody.innerHTML += row;
     });
@@ -50,12 +51,15 @@ function displayResults(filteredGuests) {
 // Search event listener
 searchBar.addEventListener("input", () => {
   const query = searchBar.value.toLowerCase().trim();
+
+  // Only proceed if the query is fully typed
   const filteredGuests = guests.filter(
     (guest) =>
-      guest.name.toLowerCase().includes(query) ||
-      guest.id.toLowerCase().includes(query) ||
-      guest.phone.toLowerCase().includes(query)
+      guest.id.toLowerCase() === query || // Full match for ID
+      guest.name.toLowerCase().split(" ").some((part) => part === query) || // Full word match in name
+      guest.seat_no.toLowerCase() === query // Exact seat number match
   );
+
   displayResults(filteredGuests);
 });
 
