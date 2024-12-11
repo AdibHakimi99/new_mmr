@@ -148,34 +148,59 @@ td {
   color: #121212;
 }
 
-/* Mobile Responsiveness */
+/* Mobile-Specific Banner Adjustment */
 @media screen and (max-width: 768px) {
-  /* Header and Text Adjustments */
-  h1, h2 {
-    font-size: 32px;
+  header img {
+    width: 100%;      /* Full width on mobile */
+    height: auto;     /* Keep aspect ratio */
+    border-radius: 0; /* Remove rounded corners */
+    margin-bottom: 20px;
+  }
+}
+
+/* Mobile-Specific Image Adjustments */
+@media screen and (max-width: 768px) {
+  img, .glowing-border {
+    width: 100%;         /* Full width on mobile */
+    max-width: 100%;     /* Prevent overflow */
+    height: auto;        /* Keep aspect ratio */
+    border-radius: 10px; /* Rounded corners */
+    margin-bottom: 20px;
+  }
+
+  .glowing-border {
+    border: 5px solid transparent;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .glowing-border:hover {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* Mobile-Specific Header & Description Adjustments */
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 36px;   /* Slightly smaller header */
+    margin-bottom: 15px;
+  }
+
+  h2 {
+    font-size: 28px;   /* Subheader size */
+    margin: 30px 0 15px;
   }
 
   .description {
-    font-size: 16px;
+    font-size: 16px;   /* Smaller but readable text */
+    line-height: 1.6;  /* Better spacing */
+    margin-bottom: 30px;
   }
 
-  #search-bar {
-    font-size: 16px;
-  }
-
-  th, td {
-    font-size: 14px;
-    padding: 8px 12px;
-  }
-
-  /* Button Container */
-  .btn-container {
-    flex-direction: column;
-  }
-
-  /* Adjust Data Box for Table */
-  .data-box {
-    padding: 10px;
-    overflow-x: auto; /* Scrollable if too wide */
+  header img {
+    width: 100%;       /* Full width */
+    height: auto;      /* Keep aspect ratio */
+    border-radius: 0;  /* Remove rounded corners */
+    margin-bottom: 20px;
   }
 }

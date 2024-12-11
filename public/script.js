@@ -52,12 +52,18 @@ function displayResults(filteredGuests) {
 searchBar.addEventListener("input", () => {
   const query = searchBar.value.toLowerCase().trim();
 
-  // Only proceed if the query is fully typed
+  // If search bar is empty, clear results and hide the table
+  if (!query) {
+    resultsBody.innerHTML = "";
+    resultsTable.style.display = "none";
+    return;
+  }
+
+  // Proceed only if the query is not empty
   const filteredGuests = guests.filter(
     (guest) =>
       guest.id.toLowerCase() === query || // Full match for ID
-      guest.name.toLowerCase().split(" ").some((part) => part === query) || // Full word match in name
-      guest.seat_no.toLowerCase() === query // Exact seat number match
+      guest.name.toLowerCase().split(" ").some((part) => part === query)  // Full word match in name
   );
 
   displayResults(filteredGuests);
