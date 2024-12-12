@@ -68,40 +68,44 @@ h2 {
   color: #bbb;
 }
 
-/* Data Box Table */
-.data-box {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-  overflow-x: auto; /* Enable scrolling on smaller screens */
-}
-
-table {
+/* Vertical Table for Guest Details with Glowing Effect */
+.guest-table {
   width: 100%;
-  max-width: 100%;
-  margin-top: 15px;
+  margin-bottom: 20px;
   border-collapse: collapse;
-  font-size: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
   text-align: left;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.4);
+  transition: all 0.3s ease-in-out;
 }
 
-th, td {
+.guest-table:hover {
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.6);
+}
+
+.guest-table th,
+.guest-table td {
   padding: 12px 20px;
   border: 1px solid #f4f4f4;
 }
 
-th {
+.guest-table th {
   background: linear-gradient(135deg, #444, #555);
   color: #FFD700; /* Gold font */
   font-family: 'Playfair Display', serif;
-  text-transform: uppercase;
+  text-transform: capitalize;
   text-shadow: 0 0 8px rgba(11, 11, 11, 0.8);
+  text-align: left;
+  width: 40%; /* First column width */
 }
 
-td {
+.guest-table td {
   background: rgba(255, 255, 255, 0.1);
   color: #f4f4f4;
+  text-align: left;
+  width: 60%; /* Second column width */
 }
 
 /* Glowing Border Effect for Images */

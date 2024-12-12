@@ -1,10 +1,9 @@
 // Path to your CSV file 
-const csvFilePath = "data.csv"; // Ensure the correct path to your CSV file
+const csvFilePath = "data1.csv"; // Ensure the correct path to your CSV file
 
 let guests = []; // This will hold the parsed guest data
 
 const searchBar = document.getElementById("search-bar");
-const resultsTable = document.getElementById("results-table");
 const resultsBody = document.getElementById("results-body");
 
 // Function to load CSV file
@@ -16,9 +15,13 @@ function loadCSV() {
     complete: function (results) {
       guests = results.data.map((guest) => ({
         name: guest.NAMA,       // Map 'NAMA' to 'name'
-        id: guest["NO TENTERA"], // Map 'NO TENTERA' to 'id'
-        seat_no: guest.NO,        // Map 'NO' to 'seat_no'
-        seat: guest.MEJA,       // Map 'MEJA' to 'seat'
+        name2: guest["NAMA PASANGAN"], // Map 'NAMA PASANGAN' to 'name2'
+        id: guest.NO,
+        seat: guest.MEJA,
+        seat_no: guest.KEDUDUKAN,        // Map 'KEDUDUKAN' to 'seat_no'
+        seat_partner: guest["KEDUDUKAN PASANGAN"],
+        menu: guest.MENU,
+        menu_partner: guest["MENU PASANGAN"],
       }));
       console.log("CSV Loaded:", guests); // Debug: Log loaded data
     },
@@ -33,18 +36,23 @@ function displayResults(filteredGuests) {
   resultsBody.innerHTML = ""; // Clear previous results
 
   if (filteredGuests.length > 0) {
-    resultsTable.style.display = "table"; // Show the table if results are found
     filteredGuests.forEach((guest) => {
-      const row = `<tr>
-        <td>${guest.name}</td>
-        <td>${guest.id}</td>
-        <td>${guest.seat}</td>
-        <td>${guest.seat_no}</td>
-      </tr>`;
-      resultsBody.innerHTML += row;
+      const table = document.createElement("table");
+      table.className = "guest-table";
+
+      let tableContent = "";
+      if (guest.name) tableContent += `<tr><th>Nama</th><td>${guest.name}</td></tr>`;
+      if (guest.id) tableContent += `<tr><th>No Tentera</th><td>${guest.id}</td></tr>`;
+      if (guest.name2) tableContent += `<tr><th>Nama Pasangan</th><td>${guest.name2}</td></tr>`;
+      if (guest.seat) tableContent += `<tr><th>Meja</th><td>${guest.seat}</td></tr>`;
+      if (guest.seat_no) tableContent += `<tr><th>Kedudukan</th><td>${guest.seat_no}</td></tr>`;
+      if (guest.seat_partner) tableContent += `<tr><th>Kedudukan Pasangan</th><td>${guest.seat_partner}</td></tr>`;
+
+      table.innerHTML = tableContent;
+      resultsBody.appendChild(table);
     });
   } else {
-    resultsTable.style.display = "none"; // Hide the table if no results are found
+    resultsBody.innerHTML = "<p>No results found. Please try another ID or name.</p>";
   }
 }
 
@@ -52,17 +60,15 @@ function displayResults(filteredGuests) {
 searchBar.addEventListener("input", () => {
   const query = searchBar.value.toLowerCase().trim();
 
-  // If search bar is empty, clear results and hide the table
   if (!query) {
-    resultsBody.innerHTML = "";
-    resultsTable.style.display = "none";
+    resultsBody.innerHTML = "<p>Please enter a name or ID to search.</p>";
     return;
   }
 
-  // Proceed only if the query is not empty
   const filteredGuests = guests.filter(
     (guest) =>
       guest.id.toLowerCase() === query || // Full match for ID
+    guest.name.toLowerCase().includes(query) || // Full phrase match in name
       guest.name.toLowerCase().split(" ").some((part) => part === query)  // Full word match in name
   );
 
