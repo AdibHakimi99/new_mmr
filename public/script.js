@@ -1,5 +1,5 @@
 // Path to your CSV file 
-const csvFilePath = "data1.csv"; // Ensure the correct path to your CSV file
+const csvFilePath = "data2.csv"; // Ensure the correct path to your CSV file
 
 let guests = []; // This will hold the parsed guest data
 
@@ -69,7 +69,9 @@ searchBar.addEventListener("input", () => {
     (guest) =>
       guest.id.toLowerCase() === query || // Full match for ID
     guest.name.toLowerCase().includes(query) || // Full phrase match in name
-      guest.name.toLowerCase().split(" ").some((part) => part === query)  // Full word match in name
+    guest.name.toLowerCase().split(" ").some((part) => part === query) || // Full word match in name
+    guest.name2.toLowerCase().includes(query) || // Full phrase match in name
+    guest.name2.toLowerCase().split(" ").some((part) => part === query)  // Full word match in name
   );
 
   displayResults(filteredGuests);
