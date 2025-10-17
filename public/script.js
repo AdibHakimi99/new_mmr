@@ -1,5 +1,5 @@
 // Path to your CSV file 
-const csvFilePath = "data56.csv"; // Ensure the correct path to your CSV file
+const csvFilePath = "data56v2.csv"; // Ensure the correct path to your CSV file
 
 let guests = []; // This will hold the parsed guest data
 
@@ -113,6 +113,17 @@ function updateCountdown() {
 }
 
 setInterval(updateCountdown, 1000);
+
+// --- Debug: Test CSV loading on Netlify ---
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("data56.csv")
+    .then(response => response.text())
+    .then(csvText => {
+      console.log("✅ CSV file fetched successfully");
+      console.log(csvText.substring(0, 200)); // show first few lines
+    })
+    .catch(err => console.error("❌ Error fetching CSV file:", err));
+});
 
 // Load CSV on page load
 document.addEventListener("DOMContentLoaded", loadCSV);

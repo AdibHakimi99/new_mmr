@@ -8,30 +8,6 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.0/papaparse.min.js"></script>
 </head>
-<script>
-// Set the event date
-const eventDate = new Date("Oct 17, 2025 20:00:00").getTime();
-
-const countdown = setInterval(() => {
-  const now = new Date().getTime();
-  const distance = eventDate - now;
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.getElementById("days").innerText = days;
-  document.getElementById("hours").innerText = hours;
-  document.getElementById("minutes").innerText = minutes;
-  document.getElementById("seconds").innerText = seconds;
-
-  if (distance < 0) {
-    clearInterval(countdown);
-    document.getElementById("countdown-section").innerHTML = "<h2>🎉 The event has started!</h2>";
-  }
-}, 1000);
-</script>
 
 <body>
   <div class="page-frame">
