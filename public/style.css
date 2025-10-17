@@ -95,14 +95,94 @@ header img {
 /* =========================================================
    5️⃣ RESULTS / DATA BOX
    ========================================================= */
+/* === Futuristic Data Box === */
 .data-box {
+  background: rgba(10, 15, 25, 0.8); /* Dark holographic panel */
+  border: 1.5px solid #0ff; /* Neon cyan outline */
+  border-radius: 12px;
+  padding: 20px;
   margin-top: 20px;
-  padding: 10px;
-  border-radius: 10px;
-  background-color: #0e0e0e;
-  box-shadow: 0 0 10px #00ffff33;
-  color: #fff;
+  box-shadow: 
+    0 0 12px #0ff8, 
+    inset 0 0 20px rgba(0, 255, 255, 0.05); /* Inner glow */
+  backdrop-filter: blur(8px); /* Glass effect */
+  transition: all 0.3s ease;
 }
+
+.data-box:hover {
+  box-shadow: 
+    0 0 18px #0ff, 
+    inset 0 0 25px rgba(0, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+/* === Guest Table === */
+.guest-table {
+  width: 100%;
+  max-width: 650px;
+  margin: 25px auto;
+  border-collapse: collapse;
+  background: rgba(15, 20, 35, 0.85); /* Deep tech panel */
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  border-radius: 14px;
+  overflow: hidden;
+  table-layout: fixed;
+  box-shadow:
+    0 0 20px rgba(0, 255, 255, 0.25),
+    inset 0 0 20px rgba(0, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  transition: 0.3s ease;
+}
+
+.guest-table:hover {
+  box-shadow:
+    0 0 30px rgba(0, 255, 255, 0.4),
+    inset 0 0 25px rgba(0, 255, 255, 0.1);
+}
+
+/* === Table Cells === */
+.guest-table th,
+.guest-table td {
+  width: 50%;
+  padding: 12px 16px;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  color: #0ff;
+  text-shadow: 0 0 6px #0ff9;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  word-wrap: break-word; /* handles long names */
+}
+
+.guest-table th {
+  background: linear-gradient(90deg, #00111a, #00222c);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #0ff;
+}
+
+.guest-table td {
+  background: rgba(0, 15, 25, 0.7);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 15px;
+}
+
+/* === Row Hover Effect === */
+.guest-table tr:hover td {
+  background: rgba(0, 255, 255, 0.1);
+  color: #fff;
+  text-shadow: 0 0 10px #0ff;
+  transition: all 0.3s ease;
+}
+
+/* === Subtle Animation on Hover === */
+.guest-table th,
+.guest-table td {
+  transition: background 0.3s, color 0.3s, text-shadow 0.3s;
+}
+
 
 /* =========================================================
    6️⃣ MENU TAGS
