@@ -1,56 +1,67 @@
-/* Reset and Global Styles */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* =========================================================
+   1️⃣ GLOBAL STYLES & LAYOUT
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Orbitron:wght@500&family=Playfair+Display:wght@600&display=swap');
 
 body {
-  background-color: #121212; /* Dark background */
-  color: #f4f4f4;
   font-family: 'Montserrat', sans-serif;
-  padding: 30px;
+  background-size: cover;
+  background-blend-mode: overlay;
+  background-color: #0a0a0a;
+  color: #f5f5f5;
+  margin: 0;
+  padding: 0;
   text-align: center;
 }
 
-/* Header Section */
+/* =========================================================
+   2️⃣ HEADERS & TEXT
+   ========================================================= */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffffaa, 0 0 20px #0088ffaa;
+  margin-top: 20px;
+}
+
+.description {
+  color: #cccccc;
+  margin-bottom: 20px;
+}
+
 header img {
   width: 100%;
   height: auto;
+  margin-bottom: 20px;
+}
+
+/* =========================================================
+   3️⃣ CONTAINERS & FRAME
+   ========================================================= */
+.page-frame {
+  border: 3px solid rgba(0, 255, 255, 0.5);
+  border-radius: 20px;
+  padding: 25px;
+  margin: 20px auto;
+  max-width: 1200px;
   border-radius: 10px;
-  margin-bottom: 40px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.4), inset 0 0 15px rgba(0, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
 }
 
-/* Titles and Headings */
-h1, h2 {
-  font-family: 'Playfair Display', serif;
-  color: #FFD700; /* Gold color */
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-}
-
-h1 {
-  font-size: 48px;
-  margin-bottom: 10px;
-}
-
-h2 {
-  font-size: 36px;
-  margin: 50px 0 20px;
-}
-
-/* Description */
-.description {
-  font-size: 18px;
-  font-family: 'Montserrat', sans-serif;
-  color: #FFD700; /* Gold color */
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-  margin-bottom: 40px;
-}
-
-/* Search Bar */
+/* =========================================================
+   4️⃣ SEARCH BOX (FUTURISTIC STYLE)
+   ========================================================= */
 .search-container {
-  margin: 40px auto;
-  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
 }
 
 #search-bar {
@@ -58,153 +69,214 @@ h2 {
   padding: 15px;
   font-size: 18px;
   margin-bottom: 20px;
-  border: 2px solid #f4f4f4;
-  border-radius: 5px;
-  background: #333;
-  color: #f4f4f4;
+  border: 2px solid #00ffff88;
+  border-radius: 20px;
+  background: radial-gradient(circle at 20% 0%, #0c0c0c 0%, #111 100%);
+  color: #00ffff;
+  text-align: center;
+  box-shadow: 0 0 10px #00ffff55, inset 0 0 15px #00ffff22;
+  outline: none;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
 #search-bar::placeholder {
-  color: #bbb;
+  color: #00ffff88;
+  letter-spacing: 1px;
 }
 
-/* Vertical Table for Guest Details with Glowing Effect */
-.guest-table {
-  width: 100%;
-  margin-bottom: 20px;
-  border-collapse: collapse;
-  background: rgba(255, 255, 255, 0.1);
+#search-bar:focus {
+  border-color: #00ffff;
+  box-shadow: 0 0 20px #00ffffaa, inset 0 0 20px #00ffff44;
+  background-color: #0e0e0e;
+  transform: scale(1.02);
+}
+
+/* =========================================================
+   5️⃣ RESULTS / DATA BOX
+   ========================================================= */
+.data-box {
+  margin-top: 20px;
+  padding: 10px;
   border-radius: 10px;
-  overflow: hidden;
-  text-align: left;
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.4);
-  transition: all 0.3s ease-in-out;
+  background-color: #0e0e0e;
+  box-shadow: 0 0 10px #00ffff33;
+  color: #fff;
 }
 
-.guest-table:hover {
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.6);
+/* =========================================================
+   6️⃣ MENU TAGS
+   ========================================================= */
+.tag {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #000;
+}
+.tag.green  { background-color: #00ff99; }  /* Ikan */
+.tag.red    { background-color: #ff5555; }  /* Daging */
+.tag.yellow { background-color: #ffee55; }  /* Ayam */
+.tag.blue   { background-color: #55aaff; }  /* Kopi */
+.tag.orange { background-color: #ffaa55; }  /* Teh */
+
+/* =========================================================
+   7️⃣ COUNTDOWN SECTION
+   ========================================================= */
+.countdown-box {
+  margin: 60px auto;
+  text-align: center;
+  background: rgba(20, 20, 20, 0.9);
+  border: 2px solid #00f0ff;
+  box-shadow: 0 0 20px #00f0ff;
+  border-radius: 12px;
+  padding: 25px 20px;
+  width: 70%;
+  max-width: 600px;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  position: relative;
+  animation: glowPulse 3s infinite ease-in-out;
 }
 
-.guest-table th,
-.guest-table td {
-  padding: 12px 20px;
-  border: 1px solid #f4f4f4;
+@keyframes glowPulse {
+  0%   { box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff inset; border-color: #00f0ff; }
+  50%  { box-shadow: 0 0 25px #00cfff, 0 0 40px #00cfff inset; border-color: #00cfff; }
+  100% { box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff inset; border-color: #00f0ff; }
 }
 
-.guest-table th {
-  background: linear-gradient(135deg, #444, #555);
-  color: #FFD700; /* Gold font */
-  font-family: 'Playfair Display', serif;
-  text-transform: capitalize;
-  text-shadow: 0 0 8px rgba(11, 11, 11, 0.8);
-  text-align: left;
-  width: 40%; /* First column width */
-}
-
-.guest-table td {
-  background: rgba(255, 255, 255, 0.1);
-  color: #f4f4f4;
-  text-align: left;
-  width: 60%; /* Second column width */
-}
-
-/* Glowing Border Effect for Images */
-.glowing-border {
-  display: block;
-  margin: auto;
-  width: 100%;  /* Full width for phones */
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  border: 5px solid transparent;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.4);
-  transition: all 0.3s ease-in-out;
-}
-
-.glowing-border:hover {
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 60px rgba(255, 255, 255, 0.5);
-}
-
-/* Button Styles */
-.btn-container {
+#countdown {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.btn {
-  padding: 12px 25px;
-  background-color: #FFD700;
-  color: #121212;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+.time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #111;
+  padding: 15px 10px;
+  border-radius: 10px;
+  min-width: 80px;
+  box-shadow: 0 0 10px #00f0ff inset;
+  flex: 1 1 100px;
+  max-width: 120px;
 }
 
-.btn:hover {
-  background-color: #c5a300;
-  color: #121212;
+.time-box span {
+  font-size: 2rem;
+  color: #00f0ff;
 }
 
-/* Mobile-Specific Banner Adjustment */
-@media screen and (max-width: 768px) {
-  header img {
-    width: 100%;      /* Full width on mobile */
-    height: auto;     /* Keep aspect ratio */
-    border-radius: 0; /* Remove rounded corners */
-    margin-bottom: 20px;
+.time-box p {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-top: 5px;
+}
+
+/* =========================================================
+   8️⃣ IMAGES & GLOWING BORDER
+   ========================================================= */
+.image-section {
+  margin: 40px 0;
+}
+
+.image-section h2 {
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+  font-family: 'Playfair Display', serif;
+}
+
+.image-section img {
+  max-width: 90%;
+  margin: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #00ffff33;
+}
+
+.glowing-border {
+  border: 2px solid #00ffff44;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 10px #00ffff44; }
+  to { box-shadow: 0 0 20px #00ffffaa; }
+}
+
+/* =========================================================
+   9️⃣ RESPONSIVE DESIGN
+   ========================================================= */
+@media (max-width: 768px) {
+  h1 { font-size: 24px; }
+  .page-frame {
+    border-width: 2px;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  }
+
+  #search-bar {
+    font-size: 16px;
+    border-radius: 40px;
+    padding: 12px;
+  }
+
+  .countdown-box {
+    width: 90%;
+    padding: 20px;
+  }
+
+  #countdown { gap: 15px; }
+
+  .time-box span { font-size: 1.8rem; }
+
+  .image-section img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
   }
 }
 
-/* Mobile-Specific Image Adjustments */
-@media screen and (max-width: 768px) {
-  img, .glowing-border {
-    width: 100%;         /* Full width on mobile */
-    max-width: 100%;     /* Prevent overflow */
-    height: auto;        /* Keep aspect ratio */
-    border-radius: 10px; /* Rounded corners */
-    margin-bottom: 20px;
-  }
-
-  .glowing-border {
-    border: 5px solid transparent;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
-    transition: all 0.3s ease-in-out;
-  }
-
-  .glowing-border:hover {
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-  }
+@media (max-width: 480px) {
+  .countdown-box h2 { font-size: 1.3rem; }
+  .time-box { min-width: 70px; padding: 12px; }
+  .time-box span { font-size: 1.5rem; }
+  .time-box p { font-size: 0.8rem; }
 }
 
-/* Mobile-Specific Header & Description Adjustments */
-@media screen and (max-width: 768px) {
-  h1 {
-    font-size: 36px;   /* Slightly smaller header */
-    margin-bottom: 15px;
+/* Responsive fix for mobile view */
+@media (max-width: 768px) {
+  .search-container {
+    width: 90%;
+    margin: 0 auto;
+    box-sizing: border-box;
   }
 
-  h2 {
-    font-size: 28px;   /* Subheader size */
-    margin: 30px 0 15px;
+  #search-bar {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 10px;
   }
 
-  .description {
-    font-size: 16px;   /* Smaller but readable text */
-    line-height: 1.6;  /* Better spacing */
-    margin-bottom: 30px;
+  .data-box {
+    width: 100%;
+    overflow-x: auto;
   }
 
-  header img {
-    width: 100%;       /* Full width */
-    height: auto;      /* Keep aspect ratio */
-    border-radius: 0;  /* Remove rounded corners */
-    margin-bottom: 20px;
+  .countdown-box {
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  .page-frame {
+    padding: 10px;
+    border-width: 2px;
   }
 }

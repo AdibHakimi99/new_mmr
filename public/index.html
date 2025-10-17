@@ -3,36 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MMR 55</title>
+  <title>MMR 56</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.0/papaparse.min.js"></script>
 </head>
+<script>
+// Set the event date
+const eventDate = new Date("Oct 17, 2025 20:00:00").getTime();
+
+const countdown = setInterval(() => {
+  const now = new Date().getTime();
+  const distance = eventDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("days").innerText = days;
+  document.getElementById("hours").innerText = hours;
+  document.getElementById("minutes").innerText = minutes;
+  document.getElementById("seconds").innerText = seconds;
+
+  if (distance < 0) {
+    clearInterval(countdown);
+    document.getElementById("countdown-section").innerHTML = "<h2>🎉 The event has started!</h2>";
+  }
+}, 1000);
+</script>
+
 <body>
+  <div class="page-frame">
 
-<header>
-  <img src="backdrop.jpg" alt="Dinner Event Banner">
-</header>
+    <header>
+      <img src="backdrop.jpg" alt="Dinner Event Banner">
+    </header>
 
-<h1>SELAMAT DATANG KE MAJLIS MAKAN MALAM REJIMENTAL HUT KRD KE-55</h1>
-<p class="description">Join us for an unforgettable evening filled with joy, laughter, and celebration. Find your seat and enjoy the event!</p>
+    <h1>SELAMAT DATANG KE MAJLIS MAKAN MALAM REJIMENTAL HUT KRD KE-56!</h1>
+    <p class="description">Join us for an unforgettable evening filled with joy, laughter, and celebration. Find your seat and enjoy the event!</p>
 
-<div class="search-container">
-  <input type="text" id="search-bar" placeholder="Carian No Tentera/Nama...">
-  <div class="data-box" id="results-body"></div>
-</div>
+    <div class="search-container">
+      <input type="text" id="search-bar" placeholder="Carian No Tentera/Nama...">
+      <div class="data-box" id="results-body"></div>
+    </div>
 
-<div class="image-section">
-  <h2>ATUR CARA MAJLIS</h2>
-  <img src="tentative.jpg" alt="Event Tentative" class="glowing-border">
-</div>
+    <!-- Countdown Section -->
+    <section id="countdown-section" class="countdown-box">
+      <h2>⏳ Countdown to Event</h2>
+      <div id="countdown">
+        <div class="time-box"><span id="days">00</span><p>Days</p></div>
+        <div class="time-box"><span id="hours">00</span><p>Hours</p></div>
+        <div class="time-box"><span id="minutes">00</span><p>Minutes</p></div>
+        <div class="time-box"><span id="seconds">00</span><p>Seconds</p></div>
+      </div>
+    </section>
 
-<div class="image-section">
-  <h2>SEATING PLAN</h2>
-  <img src="overall_table.jpg" alt="Overall Seating Plan" class="glowing-border">
-  <img src="high_table.jpg" alt="High Table" class="glowing-border">
-  <img src="low_table.jpg" alt="Low Table" class="glowing-border">
-</div>
+    <div class="image-section">
+      <h2>ATUR CARA MAJLIS</h2>
+      <img src="tentative.jpg" alt="Event Tentative" class="glowing-border">
+    </div>
+
+    <div class="image-section">
+      <h2>SEATING PLAN</h2>
+      <img src="overall_table.jpg" alt="Overall Seating Plan" class="glowing-border">
+      <img src="high_table.jpg" alt="High Table" class="glowing-border">
+      <img src="low_table.jpg" alt="Low Table" class="glowing-border">
+    </div>
+  </div>
 
 <script src="script.js"></script>
 

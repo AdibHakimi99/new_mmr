@@ -1,5 +1,5 @@
 // Path to your CSV file 
-const csvFilePath = "data2.csv"; // Ensure the correct path to your CSV file
+const csvFilePath = "data56.csv"; // Ensure the correct path to your CSV file
 
 let guests = []; // This will hold the parsed guest data
 
@@ -76,6 +76,43 @@ searchBar.addEventListener("input", () => {
 
   displayResults(filteredGuests);
 });
+
+// === Menu Tag Color ===
+function getMenuTag(menu) {
+  if (!menu) return "-";
+  const m = menu.toLowerCase();
+  if (m.includes("ikan")) return `<span class="tag green">${menu}</span>`;
+  if (m.includes("daging")) return `<span class="tag red">${menu}</span>`;
+  if (m.includes("teh")) return `<span class="tag yellow">${menu}</span>`;
+  if (m.includes("kopi")) return `<span class="tag blue">${menu}</span>`;
+  return menu;
+}
+
+// === Countdown Timer ===
+const eventDate = new Date("2025-10-17T20:00:00+08:00").getTime();
+const countdownEl = document.getElementById("countdown");
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const diff = eventDate - now;
+
+  if (diff <= 0) {
+    countdownEl.innerHTML = "<h3>🎉 Majlis telah bermula!</h3>";
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+  document.getElementById("days").innerText = days;
+  document.getElementById("hours").innerText = hours;
+  document.getElementById("minutes").innerText = mins;
+  document.getElementById("seconds").innerText = secs;
+}
+
+setInterval(updateCountdown, 1000);
 
 // Load CSV on page load
 document.addEventListener("DOMContentLoaded", loadCSV);
