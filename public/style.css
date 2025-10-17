@@ -157,7 +157,7 @@ header img {
 .guest-table th {
   background: linear-gradient(90deg, #00111a, #00222c);
   font-family: 'Orbitron', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
   border-bottom: 2px solid #0ff;
